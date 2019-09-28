@@ -6,6 +6,8 @@ var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZ
 
 // FUNCTIONS =================================================================================================
 
+// On click event for each button 
+
 
 // ajax call
 $.ajax({
