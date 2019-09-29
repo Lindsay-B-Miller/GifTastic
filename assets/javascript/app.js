@@ -1,11 +1,12 @@
 // GLOBAL VARIABLES ==========================================================================================
 
-var topics = ["camping", "hiking", "skiing", "snowboarding", "mountain biking", "backpacking", "skydiving", "hang gliding", "bungee jumping", "Wing Suiting", "rock climbing", "slack lining", "mountaineering", "zip lining", "canyoneering", "kite surfing", "kayaking", "rafting"];
+var topics = ["camping", "hiking", "skiing", "snowboarding", "mountain biking", "backpacking", "skydiving", "hang gliding", "bungee jumping", "wing suiting", "rock climbing", "slack lining", "mountaineering", "zip lining", "canyoneering", "kite surfing", "kayaking", "rafting"];
 
 
 // FUNCTIONS =================================================================================================
 
-// For loop to loop through array of topics
+// For loop to loop through array of topics. This is to render the buttons upon page loading. 
+//((Make this a function and then call function later?))
 for (var i = 0; i < topics.length; i++) {
     // Then dynamicaly generating buttons for each movie in the array
     // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
@@ -38,10 +39,31 @@ function alertSportName() {
     }).then(function (response) {
         console.log(response);
         var sport = response.data
-        console.log(sport);
-    });
+        console.log(sport)
 
-    // alert(keyword);
+        for (var i = 0; i < topics.length; i++) {
+            var sportStill = sport[i].images.fixed_height_still;
+            console.log(sportStill);
+
+
+            // Creating a div to hold the gif
+            var gifDiv = $("<div class='gif'>");
+            // Storing the rating data
+            var rating = sport[i].rating;
+            // Creating an element to have the rating displayed
+            var pOne = $("<p>").text("Rating: " + rating);
+            // Displaying the rating
+            gifDiv.append(pOne);
+            // Creating an element to store the gif
+            var gif = $("<img>").attr("src", sportStill);
+            // Displaying the gif html
+            gifDiv.append(gif);
+            // Displaying gif and rating on page
+            $("#gif-dump").prepend(gifDiv);
+        }
+
+
+    });
 }
 
 
@@ -88,8 +110,8 @@ $("#find-gif").on("click", function (event) {
     // $(".animals").on("click") will only add listeners to elements that are on the page at that time
     // $(document).on("click", ".sport", alertSportName);
 
-    // Calling the renderButtons function to display the intial buttons
-    renderButtons();
+    // Calling the renderButtons function to display the intial buttons. Do I need this??
+    // renderButtons();
 
 
 
