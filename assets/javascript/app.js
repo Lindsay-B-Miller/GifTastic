@@ -18,7 +18,7 @@ for (var i = 0; i < topics.length; i++) {
     // Providing the initial button text
     a.text(topics[i]);
     // Adding the button to the HTML
-    $("#buttons-view").append(a);
+    $("#buttons-view").prepend(a);
 }
 
 // Function for displaying the sport info
@@ -44,6 +44,7 @@ function alertSportName() {
         for (var i = 0; i < topics.length; i++) {
             var sportStill = sport[i].images.fixed_height_still.url;
             console.log(sportStill);
+            var sportAnimate = sport[i].images.fixed_height.url;
 
 
             // Creating a div to hold the gif
@@ -55,14 +56,12 @@ function alertSportName() {
             // Displaying the rating
             gifDiv.append(p);
             // Creating an element to store the gif
-            var gif = $("<img>").attr("src", sportStill);
+            var gif = $("<img>").attr({ src: sportStill, class: "gif", "data-state": "still", "data-still": sportStill, "data-animate": sportAnimate });
             // Displaying the gif html
             gifDiv.append(gif);
             // Displaying gif and rating on page
             $("#gif-dump").append(gifDiv);
         }
-
-
     });
 }
 
@@ -78,9 +77,8 @@ function renderButtons() {
     // For loop to loop through array of topics
     for (var i = 0; i < topics.length; i++) {
         // Then dynamicaly generating buttons for each movie in the array
-        // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
         var a = $("<button type='button' class='btn btn-info'>");
-        // Adding a class of movie to our button
+        // Adding a class of sport to our button
         a.addClass("sport");
         // Adding a data-attribute
         a.attr("data-name", topics[i]);
@@ -112,6 +110,19 @@ $("#find-gif").on("click", function (event) {
 
     // Calling the renderButtons function to display the intial buttons. Do I need this??
     // renderButtons();
+
+
+    // On click event for pausing and starting the gifs
+    $(".gif").on("click", function () {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+    })
 
 
 
