@@ -1,12 +1,12 @@
 // GLOBAL VARIABLES ==========================================================================================
 
-var topics = ["cat", "dog", "rabbit"];
+var topics = ["camping", "hiking", "skiing", "snowboarding", "mountain biking", "backpacking", "skydiving", "hang gliding", "bungee jumping", "Wing Suiting", "rock climbing", "slack lining", "mountaineering", "zip lining", "canyoneering", "kite surfing", "kayaking", "rafting"];
 
 
 // FUNCTIONS =================================================================================================
 
-// Generic function for capturing the animal name from the data-attribute
-function alertAnimalName() {
+// Generic function for capturing the sport name from the data-attribute
+function alertSportName() {
     var keyword = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZFirQnyj0iUS30&q=" + keyword + "&limit=10";
     // ajax call
@@ -15,11 +15,11 @@ function alertAnimalName() {
         method: "GET"
     }).then(function (response) {
         console.log(response);
-        var animal = response.data
-        console.log(animal);
+        var sport = response.data
+        console.log(sport);
     });
 
-    alert(keyword);
+    // alert(keyword);
 }
 
 
@@ -35,9 +35,9 @@ function renderButtons() {
     for (var i = 0; i < topics.length; i++) {
         // Then dynamicaly generating buttons for each movie in the array
         // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-        var a = $("<button>");
+        var a = $("<button type='button' class='btn btn-info'>");
         // Adding a class of movie to our button
-        a.addClass("animal");
+        a.addClass("sport");
         // Adding a data-attribute
         a.attr("data-name", topics[i]);
         // Providing the initial button text
@@ -53,18 +53,18 @@ $("#find-gif").on("click", function (event) {
     // Preventing the buttons default behavior when clicked (which is submitting a form)
     event.preventDefault();
     // This line grabs the input from the textbox
-    var animal = $("#text-input").val().trim();
+    var sport = $("#text-input").val().trim();
     // Adding the movie from the textbox to our array
-    topics.push(animal);
+    topics.push(sport);
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
 
 
-    // Function for displaying the animal info
-    // We're adding a click event listener to all elements with the class "animal"
+    // Function for displaying the sport info
+    // We're adding a click event listener to all elements with the class "sport"
     // We're adding the event listener to the document because it will work for dynamically generated elements
     // $(".animals").on("click") will only add listeners to elements that are on the page at that time
-    $(document).on("click", ".animal", alertAnimalName);
+    $(document).on("click", ".sport", alertSportName);
 
     // Calling the renderButtons function to display the intial buttons
     renderButtons();
