@@ -5,6 +5,28 @@ var topics = ["camping", "hiking", "skiing", "snowboarding", "mountain biking", 
 
 // FUNCTIONS =================================================================================================
 
+// For loop to loop through array of topics
+for (var i = 0; i < topics.length; i++) {
+    // Then dynamicaly generating buttons for each movie in the array
+    // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
+    var a = $("<button type='button' class='btn btn-info'>");
+    // Adding a class of movie to our button
+    a.addClass("sport");
+    // Adding a data-attribute
+    a.attr("data-name", topics[i]);
+    // Providing the initial button text
+    a.text(topics[i]);
+    // Adding the button to the HTML
+    $("#buttons-view").append(a);
+}
+
+// Function for displaying the sport info
+// We're adding a click event listener to all elements with the class "sport"
+// We're adding the event listener to the document because it will work for dynamically generated elements
+// $(".animals").on("click") will only add listeners to elements that are on the page at that time
+$(document).on("click", ".sport", alertSportName);
+
+
 // Generic function for capturing the sport name from the data-attribute
 function alertSportName() {
     var keyword = $(this).attr("data-name");
@@ -56,7 +78,7 @@ $("#find-gif").on("click", function (event) {
     var sport = $("#text-input").val().trim();
     // Adding the movie from the textbox to our array
     topics.push(sport);
-    // Calling renderButtons which handles the processing of our movie array
+    // Calling renderButtons which handles the processing of our topics array
     renderButtons();
 
 
@@ -64,7 +86,7 @@ $("#find-gif").on("click", function (event) {
     // We're adding a click event listener to all elements with the class "sport"
     // We're adding the event listener to the document because it will work for dynamically generated elements
     // $(".animals").on("click") will only add listeners to elements that are on the page at that time
-    $(document).on("click", ".sport", alertSportName);
+    // $(document).on("click", ".sport", alertSportName);
 
     // Calling the renderButtons function to display the intial buttons
     renderButtons();
