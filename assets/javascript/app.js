@@ -9,7 +9,6 @@ var topics = ["camping", "hiking", "skiing", "snowboarding", "mountain biking", 
 //((Make this a function and then call function later?))
 for (var i = 0; i < topics.length; i++) {
     // Then dynamicaly generating buttons for each movie in the array
-    // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
     var a = $("<button type='button' class='btn btn-info'>");
     // Adding a class of movie to our button
     a.addClass("sport");
@@ -31,7 +30,7 @@ $(document).on("click", ".sport", alertSportName);
 // Generic function for capturing the sport name from the data-attribute
 function alertSportName() {
     var keyword = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZFirQnyj0iUS30&q=" + keyword + "&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZFirQnyj0iUS30&q=" + keyword + "&limit=10&rating=pg-13";
     // ajax call
     $.ajax({
         url: queryURL,
@@ -56,9 +55,9 @@ function alertSportName() {
             // Displaying the rating
             gifDiv.append(p);
             // Creating an element to store the gif
-            var gif = $("<img>").attr({ src: sportStill, class: "gif", "data-state": "still", "data-still": sportStill, "data-animate": sportAnimate });
+            var gifData = $("<img>").attr({ src: sportStill, class: "gif", "data-state": "still", "data-still": sportStill, "data-animate": sportAnimate });
             // Displaying the gif html
-            gifDiv.append(gif);
+            gifDiv.append(gifData);
             // Displaying gif and rating on page
             $("#gif-dump").append(gifDiv);
         }
@@ -101,17 +100,6 @@ $("#find-gif").on("click", function (event) {
     // Calling renderButtons which handles the processing of our topics array
     renderButtons();
 
-
-    // Function for displaying the sport info
-    // We're adding a click event listener to all elements with the class "sport"
-    // We're adding the event listener to the document because it will work for dynamically generated elements
-    // $(".animals").on("click") will only add listeners to elements that are on the page at that time
-    // $(document).on("click", ".sport", alertSportName);
-
-    // Calling the renderButtons function to display the intial buttons. Do I need this??
-    // renderButtons();
-
-
     // On click event for pausing and starting the gifs
     $(".gif").on("click", function () {
         var state = $(this).attr("data-state");
@@ -123,7 +111,5 @@ $("#find-gif").on("click", function (event) {
             $(this).attr("data-state", "still");
         }
     })
-
-
 
 })
