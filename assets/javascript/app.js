@@ -42,7 +42,7 @@ function alertSportName() {
         console.log(sport)
 
         for (var i = 0; i < topics.length; i++) {
-            var sportStill = sport[i].images.fixed_height_still;
+            var sportStill = sport[i].images.fixed_height_still.url;
             console.log(sportStill);
 
 
@@ -51,15 +51,15 @@ function alertSportName() {
             // Storing the rating data
             var rating = sport[i].rating;
             // Creating an element to have the rating displayed
-            var pOne = $("<p>").text("Rating: " + rating);
+            var p = $("<p>").text("Rating: " + rating);
             // Displaying the rating
-            gifDiv.append(pOne);
+            gifDiv.append(p);
             // Creating an element to store the gif
             var gif = $("<img>").attr("src", sportStill);
             // Displaying the gif html
             gifDiv.append(gif);
             // Displaying gif and rating on page
-            $("#gif-dump").prepend(gifDiv);
+            $("#gif-dump").append(gifDiv);
         }
 
 
