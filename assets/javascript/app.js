@@ -5,11 +5,21 @@ var topics = ["cat", "dog", "rabbit"];
 
 // FUNCTIONS =================================================================================================
 
-// Generic function for capturing the movie name from the data-attribute
+// Generic function for capturing the animal name from the data-attribute
 function alertAnimalName() {
-    var animalName = $(this).attr("data-name");
+    var keyword = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZFirQnyj0iUS30&q=" + keyword + "&limit=10";
+    // ajax call
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response);
+        var animal = response.data
+        console.log(animal);
+    });
 
-    alert(animalName);
+    alert(keyword);
 }
 
 
@@ -29,9 +39,9 @@ function renderButtons() {
         // Adding a class of movie to our button
         a.addClass("animal");
         // Adding a data-attribute
-        a.attr("data-name", animals[i]);
+        a.attr("data-name", topics[i]);
         // Providing the initial button text
-        a.text(animals[i]);
+        a.text(topics[i]);
         // Adding the button to the HTML
         $("#buttons-view").append(a);
     }
@@ -48,24 +58,17 @@ $("#find-gif").on("click", function (event) {
     topics.push(animal);
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
-    // var keyword = $(this).val();
-    // var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZFirQnyj0iUS30&q=" + keyword + "&limit=10";
 
 
+    // Function for displaying the animal info
+    // We're adding a click event listener to all elements with the class "animal"
+    // We're adding the event listener to the document because it will work for dynamically generated elements
+    // $(".animals").on("click") will only add listeners to elements that are on the page at that time
     $(document).on("click", ".animal", alertAnimalName);
 
     // Calling the renderButtons function to display the intial buttons
     renderButtons();
 
 
-    // ajax call
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        var animal = response.data
-        console.log(animal);
-    });
 
 })
