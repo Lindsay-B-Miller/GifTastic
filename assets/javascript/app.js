@@ -29,6 +29,7 @@ $(document).on("click", ".sport", alertSportName);
 
 // Generic function for capturing the sport name from the data-attribute
 function alertSportName() {
+    $("#gif-dump").html("");
     var keyword = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=hv1F9gem7bGR4Z4zMeZFirQnyj0iUS30&q=" + keyword + "&limit=10&rating=pg-13";
     // ajax call
@@ -52,12 +53,12 @@ function alertSportName() {
             var rating = sport[i].rating;
             // Creating an element to have the rating displayed
             var p = $("<p>").text("Rating: " + rating);
-            // Displaying the rating
-            gifDiv.append(p);
             // Creating an element to store the gif
             var gifData = $("<img>").attr({ src: sportStill, class: "gif", "data-state": "still", "data-still": sportStill, "data-animate": sportAnimate });
             // Displaying the gif html
             gifDiv.append(gifData);
+            // Displaying the rating
+            gifDiv.append(p);
             // Displaying gif and rating on page
             $("#gif-dump").append(gifDiv);
         }
@@ -99,23 +100,9 @@ $("#find-gif").on("click", function (event) {
     topics.push(sport);
     // Calling renderButtons which handles the processing of our topics array
     renderButtons();
+});
 
-    // On click event for pausing and starting the gifs
-    // $(".gif").on("click", function () {
-    //     console.log("testing")
-    //     var state = $(this).attr("data-state");
-    //     if (state === "still") {
-    //         $(this).attr("src", $(this).attr("data-animate"));
-    //         $(this).attr("data-state", "animate");
-    //     } else {
-    //         $(this).attr("src", $(this).attr("data-still"));
-    //         $(this).attr("data-state", "still");
-    //     }
-    // })
-
-
-})
-
+// On click event for pausing and starting the gifs
 $(document).on("click", ".gif", function () {
     console.log("testing")
     var state = $(this).attr("data-state");

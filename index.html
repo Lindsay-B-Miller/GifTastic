@@ -18,25 +18,27 @@
         <div id="buttons-view"></div>
     </header>
 
-    <div class="container">
-        <div class="row">
-            <div class="order-lg-1 order-2 col-lg-8 col-md-8 col-sm-6 col-xs-6">
-                <!-- gif dump -->
-                <section class="classDump" id="gif-dump">
-                </section>
-            </div>
-            <div class="order-lg-2 order-1 col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <!-- this is where the form will go -->
-                <!-- This form will be where users input data for new buttons -->
-                <form id="form">
-                    <label for="text-input">Add an Extreme Sport!</label>
-                    <input type="text" id="text-input"><br>
+    <!-- This form will be where users input data for new buttons -->
+    <form id="form">
+        <label for="text-input">Add an Extreme Sport!</label>
+        <input type="text" id="text-input"><br>
 
-                    <!-- This button will trigger our AJAX call -->
-                    <input id="find-gif" type="submit" value="Gif Search">
-                </form>
-            </div>
+        <!-- This button will trigger our AJAX call -->
+        <input class="btn btn-info" id="find-gif" type="submit" value="Gif Search">
+    </form>
+
+    <div class="container">
+        <!-- <div class="row"> -->
+        <div class="dump">
+            <!-- gif dump -->
+            <section class="classDump" id="gif-dump">
+            </section>
         </div>
+        <!-- <div class="order-lg-2 order-1 col-lg-4 col-md-4 col-sm-6 col-xs-6"> -->
+        <!-- this is where the form will go -->
+
+    </div>
+    </div>
 
     </div>
 

@@ -1,3 +1,8 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+}
+
 .classDump {
     display: flex;
     flex-wrap: wrap;
@@ -12,7 +17,7 @@
 }
 
 .gif {
-    margin: 2px;
+    margin: 5px;
     text-align: center;
 }
 
@@ -20,4 +25,9 @@ p {
     background-color: teal;
     color: white;
     margin-bottom: 0rem;
+}
+
+#form {
+    margin-top: 15px;
+    text-align: center;
 }
