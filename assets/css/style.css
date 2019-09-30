@@ -1,5 +1,6 @@
-#gif-dump {
-    float: left;
+.classDump {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .btn {
