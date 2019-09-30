@@ -3,6 +3,21 @@
     flex-wrap: wrap;
 }
 
+.container {
+    margin-top: 30px;
+}
+
 .btn {
-    margin: 10px;
+    margin: 3px;
+}
+
+.gif {
+    margin: 2px;
+    text-align: center;
+}
+
+p {
+    background-color: teal;
+    color: white;
+    margin-bottom: 0rem;
 }
